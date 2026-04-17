@@ -126,7 +126,8 @@ def register():
 
     flash("Registered successfully!", "success")
     return redirect(url_for("event_detail", event_id=event.id))
-    @app.route("/dashboard")
+    
+@app.route("/dashboard")
 def dashboard():
     events = Event.query.order_by(Event.date).all()
     students = Student.query.order_by(Student.created_at.desc()).all()
