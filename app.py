@@ -89,6 +89,9 @@ def seed_sample_data():
 
 
 # ---------------- ROUTES ---------------- #
+@app.route("/admin")
+def admin_login():
+    return "Admin Page"
 
 @app.route("/")
 def home():
