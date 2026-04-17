@@ -126,6 +126,19 @@ def register():
 
     flash("Registered successfully!", "success")
     return redirect(url_for("event_detail", event_id=event.id))
+    @app.route("/dashboard")
+def dashboard():
+    return "Dashboard Page"
+
+
+@app.route("/admin")
+def admin():
+    return "Admin Page"
+
+
+@app.route("/contact", methods=["POST"])
+def contact():
+    return redirect(url_for("home"))
 
 
 # ---------------- START APP ---------------- #
