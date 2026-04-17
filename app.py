@@ -126,6 +126,31 @@ def register():
 
     flash("Registered successfully!", "success")
     return redirect(url_for("event_detail", event_id=event.id))
+    @app.route("/dashboard")
+def dashboard():
+    events = Event.query.order_by(Event.date).all()
+    students = Student.query.order_by(Student.created_at.desc()).all()
+
+    event_participation = [
+        {"label": e.title, "count": len(e.registrations)} for e in events
+    ]
+
+    student_participation = [
+        {"label": s.name, "count": len(s.registrations)} for s in students
+    ]
+
+    summary = {
+        "total_registrations": Registration.query.count(),
+        "unique_students": Student.query.count(),
+        "total_events": Event.query.count(),
+    }
+
+    return render_template(
+        "dashboard.html",
+        event_participation=event_participation,
+        student_participation=student_participation,
+        summary=summary,
+    )
    
 
 
